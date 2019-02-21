@@ -150,7 +150,7 @@ if (!("scramble" in Array.prototype)) {
 			submt = true;
 			$('#explanation').empty();
 			$('#question').text(quiz[currentquestion]['question']);
-			$('#pager').text('Question ' + Number(currentquestion + 1) + ' of ' + quiz.length);
+			$('#pager').text('Spørgsmål ' + Number(currentquestion + 1) + ' af ' + quiz.length);
 			if(quiz[currentquestion].hasOwnProperty('image') && quiz[currentquestion]['image'] != ""){
 				if($('#question-image').length == 0){
 					$(document.createElement('img')).addClass('question-image').attr('id', 'question-image').attr('src', quiz[currentquestion]['image']).attr('alt', htmlEncode(quiz[currentquestion]['question'])).insertAfter('#question');
@@ -249,7 +249,7 @@ if (!("scramble" in Array.prototype)) {
 			$('#choice-block').empty();
 			$('#submitbutton').remove();
 			$('.rsform-block-submit').addClass('show');
-			$('#question').text("You got " + score + " out of " + quiz.length + " correct.");
+			$('#question').text("Du havde " + score + " ud af " + quiz.length + " spørgsmål korrekt.");
 			$(document.createElement('h4')).addClass('score').text(Math.round(score/quiz.length * 100) + '%').insertAfter('#question');			
 		}
 
