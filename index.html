@@ -61,7 +61,7 @@ if (!("scramble" in Array.prototype)) {
 	    
     var quiz = [
         {
-            "question"      :   "1: Cphbusiness har biblioteker placeret på Cphbusiness City (Landemærket 11) og Cphbusiness Lyngby (Nørgaardsvej 30).Biblioteket på Cphbusiness City rummer litteratur og materialer til alle uddannelser (minus IT og sportsmanagement) og supporterer dermed også afdelingerne Cphbusiness Nørrebro og Cphbusiness Søerne. Biblioteket på Cphbusiness Lyngby rummer primært litteratur og materialer vedrørende IT og innovation og entrepreneurskab, men har også mindre samlinger af merkantil-, økonomi-, finans- og servicelitteratur. Biblioteket er ubemandet og har selvbetjening.?",
+            "Spørgsmål"      :   "1: Cphbusiness har biblioteker placeret på Cphbusiness City (Landemærket 11) og Cphbusiness Lyngby (Nørgaardsvej 30).Biblioteket på Cphbusiness City rummer litteratur og materialer til alle uddannelser (minus IT og sportsmanagement) og supporterer dermed også afdelingerne Cphbusiness Nørrebro og Cphbusiness Søerne. Biblioteket på Cphbusiness Lyngby rummer primært litteratur og materialer vedrørende IT og innovation og entrepreneurskab, men har også mindre samlinger af merkantil-, økonomi-, finans- og servicelitteratur. Biblioteket er ubemandet og har selvbetjening.?",
             "image"         :   "http://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/220px-Albert_Einstein_Head.jpg",
             "choices"       :   [
                                     "Cphbusiness har biblioteker placeret på Cphbusiness City (Landemærket 11) og Cphbusiness Lyngby (Nørgaardsvej 30).Biblioteket på Cphbusiness City rummer litteratur og materialer til alle uddannelser (minus IT og sportsmanagement) og supporterer dermed også afdelingerne Cphbusiness Nørrebro og Cphbusiness Søerne. Biblioteket på Cphbusiness Lyngby rummer primært litteratur og materialer vedrørende IT og innovation og entrepreneurskab, men har også mindre samlinger af merkantil-, økonomi-, finans- og servicelitteratur. Biblioteket er ubemandet og har selvbetjening.",
@@ -150,7 +150,7 @@ if (!("scramble" in Array.prototype)) {
 			submt = true;
 			$('#explanation').empty();
 			$('#question').text(quiz[currentquestion]['question']);
-			$('#pager').text('Question ' + Number(currentquestion + 1) + ' of ' + quiz.length);
+			$('#pager').text('Spørgsmål ' + Number(currentquestion + 1) + ' af ' + quiz.length);
 			if(quiz[currentquestion].hasOwnProperty('image') && quiz[currentquestion]['image'] != ""){
 				if($('#question-image').length == 0){
 					$(document.createElement('img')).addClass('question-image').attr('id', 'question-image').attr('src', quiz[currentquestion]['image']).attr('alt', htmlEncode(quiz[currentquestion]['question'])).insertAfter('#question');
@@ -193,23 +193,23 @@ if (!("scramble" in Array.prototype)) {
         function processQuestion(choice){
             if(quiz[currentquestion]['choices'][choice] == quiz[currentquestion]['correct']){
 				$('.choice').eq(choice).addClass('btn-success').css({'font-weight':'bold', 'border-color':'#51a351', 'color':'#fff'});
-				$('#explanation').html('<span class="korrekt">CORRECT!</span> ' + htmlEncode(quiz[currentquestion]['explanation']));
+				$('#explanation').html('<span class="correct">Korrekt!</span> ' + htmlEncode(quiz[currentquestion]['explanation']));
 				score++;
 			} else {
                 $('.choice').eq(choice).addClass('btn-danger').css({'font-weight':'bold', 'border-color':'#f93939', 'color':'#fff'});
-                $('#explanation').html('<span class="forkert">INCORRECT!</span> ' + htmlEncode(quiz[currentquestion]['explanation']));
+                $('#explanation').html('<span class="incorrect">Forkert!</span> ' + htmlEncode(quiz[currentquestion]['explanation']));
             }
             currentquestion++;
 
 			if(currentquestion == quiz.length){
-				$('#submitbutton').html('GET QUIZ RESULTS').removeClass('btn-success').addClass('btn-info').css({'border-color':'#3a87ad', 'color':'#fff'}).on('click', function(){
+				$('#submitbutton').html('Quiz resultater').removeClass('btn-success').addClass('btn-info').css({'border-color':'#3a87ad', 'color':'#fff'}).on('click', function(){
 					$(this).text('GET QUIZ RESULTS').on('click');
 					endQuiz();
 				})
 				
 			} else if (currentquestion < quiz.length){
-				$('#submitbutton').html('NEXT QUESTION &raquo;').removeClass('btn-success').addClass('btn-warning').css({'font-weight':'bold', 'border-color':'#faa732', 'color':'#fff'}).on('click', function(){
-					$(this).text('- CHECK ANSWER -').removeClass('btn-warning').addClass('btn-success').css({'font-weight':'bold', 'border-color':'#51a351', 'color':'#fff'}).on('click');
+				$('#submitbutton').html('Fortsæt til næste spørgsmål &RightArrow;').removeClass('btn-success').addClass('btn-warning').css({'font-weight':'bold', 'border-color':'#faa732', 'color':'#fff'}).on('click', function(){
+					$(this).text('Angiv svar').removeClass('btn-warning').addClass('btn-success').css({'font-weight':'bold', 'border-color':'#51a351', 'color':'#fff'}).on('click');
 					nextQuestion();
 				})
 			} else {
@@ -249,7 +249,7 @@ if (!("scramble" in Array.prototype)) {
 			$('#choice-block').empty();
 			$('#submitbutton').remove();
 			$('.rsform-block-submit').addClass('show');
-			$('#question').text("You got " + score + " out of " + quiz.length + " correct.");
+			$('#question').text("Du fik " + score + " ud af " + quiz.length + " spørgsmål korrekte.");
 			$(document.createElement('h4')).addClass('score').text(Math.round(score/quiz.length * 100) + '%').insertAfter('#question');			
 		}
 
@@ -267,7 +267,7 @@ if (!("scramble" in Array.prototype)) {
 			//add pager and questions
 			if(typeof quiz !== "undefined" && $.type(quiz) === "array"){
 				//add pager
-				$(document.createElement('p')).addClass('pager').attr('id','pager').text('Question 1 of ' + quiz.length).appendTo('#frame');
+				$(document.createElement('p')).addClass('pager').attr('id','pager').text('Spørgsmål 1 af ' + quiz.length).appendTo('#frame');
 				//add first question
 				$(document.createElement('h3')).addClass('question').attr('id', 'question').text(quiz[0]['question']).appendTo('#frame');
 				//add image if present
@@ -284,7 +284,7 @@ if (!("scramble" in Array.prototype)) {
 				addChoices(quiz[0]['choices']);
 				
 				//add submit button
-				$(document.createElement('div')).addClass('btn-success choice-box').attr('id', 'submitbutton').text('- CHECK ANSWER -').css({'font-weight':'bold', 'color':'#fff','padding':'30px 0', 'border-radius':'10px'}).appendTo('#frame');
+				$(document.createElement('div')).addClass('btn-success choice-box').attr('id', 'submitbutton').text(' Angiv svar').css({'font-weight':'bold', 'color':'#fff','padding':'300px 0', 'border-radius':'3px'}).appendTo('#frame');
 				
 				setupButtons();
 			}
@@ -364,16 +364,21 @@ if (!("scramble" in Array.prototype)) {
 <div class="form-group rsform-block rsform-block-framecontent">
     <div id="frame" role="content"></div>
 </div>
-<hr>
-<!-- <div class="form-group rsform-block rsform-block-placecontent">
+<!-- <hr>
+<div class="form-group rsform-block rsform-block-placecontent">
 	<label class="col-sm-3 control-label formControlLabel" data-toggle="tooltip" title="" for="placecontent"></label>
 	<div class="col-sm-6 formControls">
 		<textarea cols="50" rows="5" name="form[placecontent]" id="placecontent" readonly="" class="rsform-text-box form-control rsform-text-box"></textarea>			
 	</div>
-</div>	 -->
+</div>	
 	
 <div class="col-sm-6 formControls rsform-block-submit">
-	<button type="submit" name="form[submit]" id="submit" onclick="copyText()" class="rsform-submit-button  btn btn-primary">Submit Quiz</button>			
+	<button type="submit" name="form[submit]" id="submit" onclick="window.open('', '_self', ''); window.close();" class="rsform-submit-button  btn btn-primary">Luk quiz</button>		
+
+		
 </div>	
+ -->
+
+
 </body>
 </html>
